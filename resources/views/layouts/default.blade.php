@@ -1,68 +1,23 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<title>@yield('title') - Hyder</title>
-	
-	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-	
-	<!-- Styles -->
-  <style>
-		html, body {
-			background-color : #fff;
-			color            : #636b6f;
-			font-family      : 'Nunito', sans-serif;
-			font-weight      : 200;
-			height           : 100vh;
-			margin           : 0;
-		}
-		
-		.full-height {
-			height : 100vh;
-		}
-		
-		.flex-center {
-			align-items     : center;
-			display         : flex;
-			justify-content : center;
-		}
-		
-		.position-ref {
-			position : relative;
-		}
-		
-		.top-right {
-			position : absolute;
-			right    : 10px;
-			top      : 18px;
-		}
-		
-		.content {
-			text-align : center;
-		}
-		
-		.title {
-			font-size : 84px;
-		}
-		
-		.links > a {
-			color           : #636b6f;
-			padding         : 0 25px;
-			font-size       : 13px;
-			font-weight     : 600;
-			letter-spacing  : .1rem;
-			text-decoration : none;
-			text-transform  : uppercase;
-		}
-		
-		.m-b-md {
-			margin-bottom : 30px;
-		}
-  </style>
+	<meta charset="UTF-8">
+	<title>@yield('title') - Hyder</title>
+	<link href="{{ mix('css/app.css') }}" rel="stylesheet">
 	
 </head>
+
 <body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">Weibo App</a>
+      <ul class="navbar-nav justify-content-end">
+        <li class="nav-item"><a class="nav-link" href="/help">帮助</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">登录</a></li>
+      </ul>
+    </div>
+  </nav>
+	
 	<div class="content">
 	  <div class="title m-b-md">
 		  @yield('content')
