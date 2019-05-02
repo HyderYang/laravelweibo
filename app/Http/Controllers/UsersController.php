@@ -32,6 +32,11 @@ class UsersController extends Controller {
 		return view('users.show', compact('user'));
 	}
 	
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 * @throws \Illuminate\Validation\ValidationException
+	 */
 	public function store(Request $request) {
 		$this->validate($request, [
 			'name' => 'required|max:50',
@@ -63,11 +68,23 @@ class UsersController extends Controller {
 		});
  	}
 	
+	/**
+	 * @param User $user
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 * @throws \Illuminate\Auth\Access\AuthorizationException
+	 */
 	public function edit(User $user) {
 		$this->authorize('update', $user);
 		return view('users.edit', compact('user'));
 	}
 	
+	/**
+	 * @param User    $user
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse
+	 * @throws \Illuminate\Auth\Access\AuthorizationException
+	 * @throws \Illuminate\Validation\ValidationException
+	 */
 	public function update(User $user, Request $request) {
 		$this->authorize('update', $user);
 		$this->validate($request, [
@@ -87,6 +104,12 @@ class UsersController extends Controller {
 		return redirect()->route('users.show', $user);
 	}
 	
+	/**
+	 * @param User $user
+	 * @return \Illuminate\Http\RedirectResponse
+	 * @throws \Illuminate\Auth\Access\AuthorizationException
+	 * @throws \Exception
+	 */
 	public function destroy(User $user) {
 		$this->authorize('destroy', $user);
 		$user->delete();
@@ -94,7 +117,12 @@ class UsersController extends Controller {
 		return back();
 	}
 	
+	/**
+	 * @param $token
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
 	public function confirmEmail($token) {
+		/* @var $user User */
 		$user = User::where('activation_token', $token)->firstOrFail();
 		
 		$user->activated = true;

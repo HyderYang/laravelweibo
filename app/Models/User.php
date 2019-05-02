@@ -7,6 +7,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 
+/**
+ * @method static paginate(int $int)
+ * @method static create(array $array)
+ * @method static where(string $string, $token)
+ */
 class User extends Authenticatable {
 	
 	use Notifiable;
@@ -40,6 +45,10 @@ class User extends Authenticatable {
 	protected $casts = [
 		'email_verified_at' => 'datetime',
 	];
+	
+	public function statuses() {
+		return $this->hasMany(Status::class);
+	}
 	
 	public static function boot() {
 		parent::boot();
